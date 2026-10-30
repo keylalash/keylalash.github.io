@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="imagens/logo-marca.png">
+<title>Keyla Lash | Realce seu olhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --black:#050403;
+    --ink:#0c0a07;
+    --panel:#120f0a;
+    --line:#3b2a12;
+    --gold:#d9a54f;
+    --gold-light:#fcde8f;
+    --gold-deep:#936023;
+    --gold-grad:linear-gradient(180deg,#fcde8f 0%,#ebbb66 35%,#cd9746 65%,#936023 100%);
+    --text:#f6efe0;
+    --muted:#b6ab96;
+    --serif:"Cinzel",Georgia,serif;
+    --sans:"Jost",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:300;background:var(--black);color:var(--text);line-height:1.6}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+
+/* Símbolos em traço fino dourado */
+.ic{width:34px;height:34px;fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.flip{transform:scaleX(-1)}
+
+/* Menu */
+header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,9,7,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{max-width:1100px;margin:auto;padding:14px 25px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:5px;text-transform:uppercase;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.logo img{height:40px;width:auto;display:block}
+nav ul{display:flex;gap:30px;list-style:none}
+nav a{color:var(--text);text-decoration:none;font-size:14px;letter-spacing:.5px;transition:color .3s}
+nav a:hover{color:var(--gold)}
+
+/* Início */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 70px;background:radial-gradient(ellipse at 50% 38%,#2a2110 0%,var(--black) 62%)}
+.hero-content{max-width:760px}
+.hero-logo{width:min(600px,88vw);height:auto;display:block;margin:0 auto 4px;animation:aparecer 1.8s ease both}
+@keyframes aparecer{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero h2{font-family:var(--serif);font-weight:400;font-size:clamp(15px,2.6vw,21px);letter-spacing:7px;text-transform:uppercase;margin-bottom:22px;color:var(--gold-light)}
+.hero p{color:var(--muted);max-width:520px;margin:0 auto 36px;font-size:17px}
+
+.button{display:inline-block;background:linear-gradient(135deg,var(--gold-light),var(--gold) 50%,var(--gold-deep));color:var(--black);padding:16px 34px;border-radius:2px;text-decoration:none;font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:1px;transition:transform .3s,box-shadow .3s}
+.button:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(212,175,55,.25)}
+
+/* Divisor com sobrancelhas e olho */
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;max-width:420px;margin:0 auto}
+.divider span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
+.divider span:last-child{background:linear-gradient(270deg,transparent,var(--gold-deep))}
+.divider .ic{width:30px;height:22px}
+
+section{padding:100px 20px}
+.container{max-width:1100px;margin:auto}
+.section-title{text-align:center;margin-bottom:56px}
+.section-title .ic{width:40px;height:30px;margin-bottom:10px}
+.section-title h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,4.4vw,38px);line-height:1.2;letter-spacing:4px;text-transform:uppercase;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section-title p{color:var(--muted);margin-top:8px}
+
+/* Serviços */
+.services{background:var(--ink)}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service{position:relative;border:1px solid var(--line);padding:44px 30px 34px;background:var(--panel);text-align:center;transition:transform .3s,border-color .3s}
+.service::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,175,55,.12);pointer-events:none}
+.service:hover{transform:translateY(-6px);border-color:var(--gold)}
+.service .ic{width:52px;height:52px;margin-bottom:18px}
+.service h3{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.service p{color:var(--muted);margin-bottom:22px}
+.price{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--gold-light)}
+
+/* Galeria */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gallery-item{height:340px;overflow:hidden;background:linear-gradient(135deg,#191919,#302611);border:1px solid var(--line);padding:8px}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.gallery-item:hover img{transform:scale(1.05)}
+
+/* Agendamento */
+.booking{background:var(--ink)}
+form{max-width:650px;margin:auto;background:var(--panel);padding:42px;border:1px solid var(--line);position:relative}
+form::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,175,55,.12);pointer-events:none}
+label{display:block;margin-bottom:8px;color:var(--gold);font-size:15px;letter-spacing:.5px}
+input,select{width:100%;padding:14px;margin-bottom:22px;background:var(--black);border:1px solid #3b3426;color:var(--text);font-family:var(--sans);font-size:15px;font-weight:300;outline:none;transition:border-color .3s}
+input:focus,select:focus{border-color:var(--gold)}
+form button{width:100%;border:none;cursor:pointer}
+
+/* Contato */
+.contact{text-align:center}
+.contact p{color:var(--muted);margin:10px 0;font-size:17px}
+.contact p strong{color:var(--gold);font-weight:500;margin-right:6px}
+.contact .button{margin-top:26px}
+
+footer{text-align:center;padding:34px 20px;border-top:1px solid var(--line);color:#8a8272;font-size:14px}
+footer .divider{margin-bottom:18px;max-width:260px}
+footer strong{color:var(--gold);font-weight:500}
+
+@media (max-width:700px){
+    nav{flex-direction:column;gap:8px;padding:12px 15px}
+    nav ul{gap:18px}
+    nav a{font-size:13px}
+    .hero{padding-top:150px}
+    .service-grid,.gallery{grid-template-columns:1fr}
+    .gallery-item{height:320px}
+    section{padding:76px 18px}
+    form{padding:30px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+    .hero-logo{animation:none}
+    html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Símbolos reutilizáveis -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-eye" viewBox="0 0 64 64">
+        <path d="M5 38 Q32 14 59 38 Q32 56 5 38Z"/>
+        <circle cx="32" cy="38" r="7"/>
+        <path d="M14 30 L9 22 M23 25 L19 15 M32 22 L32 11 M41 25 L45 15 M50 30 L55 22"/>
+    </symbol>
+    <symbol id="i-brow" viewBox="0 0 64 40">
+        <path d="M4 30 C14 12 38 6 60 16 C40 14 20 18 4 30Z"/>
+        <path d="M14 22 L18 19 M24 17 L28 15 M35 14 L39 14" opacity=".7"/>
+    </symbol>
+    <symbol id="i-lashes" viewBox="0 0 64 64">
+        <path d="M32 54 C22 44 14 34 9 22 M32 54 C26 42 22 28 20 14 M32 54 L32 9 M32 54 C38 42 42 28 44 14 M32 54 C42 44 50 34 55 22"/>
+        <path d="M22 56 L42 56"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 64 64">
+        <path d="M32 6 L37 27 L58 32 L37 37 L32 58 L27 37 L6 32 L27 27Z"/>
+        <path d="M52 8 L53.5 13 L58.5 14.5 L53.5 16 L52 21 L50.5 16 L45.5 14.5 L50.5 13Z"/>
+    </symbol>
+</svg>
+
+<!-- MENU -->
+<header>
+    <nav>
+        <div class="logo">
+            <img src="imagens/logo-marca.png" alt="">
+            Keyla Lash
+        </div>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#galeria">Trabalhos</a></li>
+            <li><a href="#agendamento">Agendamento</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- INÍCIO -->
+<section class="hero" id="inicio">
+    <div class="hero-content">
+
+        <img class="hero-logo" src="imagens/logo.png" alt="Keyla Lash — extensão de cílios">
+        <h1 class="sr-only">Keyla Lash</h1>
+        <h2>Realce seu olhar.</h2>
+
+        <div class="divider" style="margin-bottom:22px">
+            <span></span>
+            <svg class="ic"><use href="#i-brow"/></svg>
+            <svg class="ic"><use href="#i-sparkle"/></svg>
+            <svg class="ic flip"><use href="#i-brow"/></svg>
+            <span></span>
+        </div>
+
+        <p>Beleza, elegância e sofisticação em cada detalhe. Especialista em extensão de cílios, para valorizar ainda mais a sua beleza.</p>
+
+        <a href="#agendamento" class="button">Agendar meu horário</a>
+    </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services" id="servicos">
+    <div class="container">
+
+        <div class="section-title">
+            <svg class="ic"><use href="#i-brow"/></svg>
+            <h2>Escolha seu olhar</h2>
+            <p>Três estilos de extensão, todos feitos com cuidado e precisão.</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="service">
+                <svg class="ic"><use href="#i-eye"/></svg>
+                <h3>Fio a Fio</h3>
+                <p>Resultado delicado e natural para valorizar seus olhos.</p>
+                <div class="price">R$ 120</div>
+            </div>
+
+            <div class="service">
+                <svg class="ic"><use href="#i-lashes"/></svg>
+                <h3>Volume Brasileiro</h3>
+                <p>Mais volume e definição mantendo um resultado sofisticado.</p>
+                <div class="price">R$ 150</div>
+            </div>
+
+            <div class="service">
+                <svg class="ic"><use href="#i-sparkle"/></svg>
+                <h3>Volume Russo</h3>
+                <p>Um olhar marcante para quem ama mais intensidade.</p>
+                <div class="price">R$ 180</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+    <div class="container">
+
+        <div class="section-title">
+            <svg class="ic"><use href="#i-lashes"/></svg>
+            <h2>Resultados</h2>
+            <p>Alguns dos olhares que já realçamos.</p>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="imagens/foto1.jpg.jfif" alt="Trabalho de cílios">
+            </div>
+            <div class="gallery-item">
+                <img src="imagens/foto2.jpg.jfif" alt="Trabalho de cílios">
+            </div>
+            <div class="gallery-item">
+                <img src="imagens/foto3.jpg.jfif" alt="Trabalho de cílios">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section class="booking" id="agendamento">
+    <div class="container">
+
+        <div class="section-title">
+            <svg class="ic"><use href="#i-eye"/></svg>
+            <h2>Reserve seu horário</h2>
+            <p>Preencha os dados e confirmamos pelo WhatsApp.</p>
+        </div>
+
+        <form id="bookingForm">
+
+            <label for="name">Seu nome</label>
+            <input type="text" id="name" placeholder="Digite seu nome" required>
+
+            <label for="phone">WhatsApp</label>
+            <input type="tel" id="phone" placeholder="(00) 00000-0000" required>
+
+            <label for="service">Serviço</label>
+            <select id="service" required>
+                <option value="">Selecione um serviço</option>
+                <option>Fio a Fio — R$ 120</option>
+                <option>Volume Brasileiro — R$ 150</option>
+                <option>Volume Russo — R$ 180</option>
+            </select>
+
+            <label for="date">Data</label>
+            <input type="date" id="date" required>
+
+            <label for="time">Horário</label>
+            <select id="time" required>
+                <option value="">Selecione um horário</option>
+                <option>08:00</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>13:00</option>
+                <option>14:00</option>
+                <option>15:00</option>
+                <option>16:00</option>
+                <option>17:00</option>
+            </select>
+
+            <button class="button" type="submit">Solicitar agendamento</button>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contact" id="contato">
+    <div class="container">
+
+        <div class="section-title">
+            <svg class="ic"><use href="#i-sparkle"/></svg>
+            <h2>Contato</h2>
+        </div>
+
+        <p><strong>WhatsApp</strong> (88) 99685-7297</p>
+        <p><strong>Endereço</strong> Av. Contorno Sul, Bl. 400, Apt. 104</p>
+        <p><strong>Horários</strong> a partir das 8h</p>
+        <p><strong>Instagram</strong> @keylalash</p>
+
+        <a href="https://wa.me/5588996857297" target="_blank" rel="noopener" class="button">Falar no WhatsApp</a>
+
+    </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+    <img src="imagens/logo-marca.png" alt="" style="height:54px;width:auto;margin:0 auto 14px;display:block">
+    © 2026 <strong>Keyla Lash</strong> — Todos os direitos reservados.
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+    const dateInput = document.getElementById("date");
+    dateInput.min = new Date().toISOString().split("T")[0];
+
+    document.getElementById("bookingForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const botao = form.querySelector("button");
+        const dados = {
+            nome_cliente: document.getElementById("name").value.trim(),
+            whatsapp_cliente: document.getElementById("phone").value.replace(/\D/g, ""),
+            servico: document.getElementById("service").value,
+            data_agendamento: document.getElementById("date").value,
+            hora_agendamento: document.getElementById("time").value
+        };
+
+        botao.disabled = true;
+        botao.textContent = "Enviando...";
+
+        try {
+            const { error } = await banco.from("agendamentos").insert(dados);
+
+            if (error) {
+                alert(error.code === "23505"
+                    ? "Esse horário já foi reservado. Escolha outro, por favor."
+                    : "Não foi possível enviar agora. Tente novamente ou chame no WhatsApp.");
+            } else {
+                alert("Obrigada, " + dados.nome_cliente + "! Seu pedido de agendamento foi recebido.");
+                form.reset();
+            }
+        } catch (e) {
+            alert("Não foi possível enviar agora. Tente novamente ou chame no WhatsApp.");
+        }
+
+        botao.disabled = false;
+        botao.textContent = "Solicitar agendamento";
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const SUPABASE_URL = "https://lnvojgmtrzxxlscbfnjf.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_qQG98DHw81JBG9jMjjqPZA_an2JlN9o";
+
+    const banco = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    console.log("Conexão Supabase configurada:", !!banco);
+</script>
+
+</body>
+</html>
