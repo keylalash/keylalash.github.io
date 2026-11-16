@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="imagens/logo-marca.png">
+<title>Keyla Lash | Realce seu olhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --black:#050403;
+    --ink:#0c0a07;
+    --panel:#120f0a;
+    --line:#3b2a12;
+    --gold:#d9a54f;
+    --gold-light:#fcde8f;
+    --gold-deep:#936023;
+    --gold-grad:linear-gradient(180deg,#fcde8f 0%,#ebbb66 35%,#cd9746 65%,#936023 100%);
+    --text:#f6efe0;
+    --muted:#b6ab96;
+    --serif:"Cinzel",Georgia,serif;
+    --sans:"Jost",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:300;background:var(--black);color:var(--text);line-height:1.6}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+
+/* Símbolos em traço fino dourado */
+.ic{width:34px;height:34px;fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.flip{transform:scaleX(-1)}
+
+/* Menu */
+header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,9,7,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{max-width:1100px;margin:auto;padding:14px 25px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:5px;text-transform:uppercase;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.logo img{height:40px;width:auto;display:block}
+nav ul{display:flex;gap:30px;list-style:none}
+nav a{color:var(--text);text-decoration:none;font-size:14px;letter-spacing:.5px;transition:color .3s}
+nav a:hover{color:var(--gold)}
+
+/* Início */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 70px;background:radial-gradient(ellipse at 50% 38%,#2a2110 0%,var(--black) 62%)}
+.hero-content{max-width:760px}
+.hero-logo{width:min(600px,88vw);height:auto;display:block;margin:0 auto 4px;animation:aparecer 1.8s ease both}
+@keyframes aparecer{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero h2{font-family:var(--serif);font-weight:400;font-size:clamp(15px,2.6vw,21px);letter-spacing:7px;text-transform:uppercase;margin-bottom:22px;color:var(--gold-light)}
+.hero p{color:var(--muted);max-width:520px;margin:0 auto 36px;font-size:17px}
+
+.button{display:inline-block;background:linear-gradient(135deg,var(--gold-light),var(--gold) 50%,var(--gold-deep));color:var(--black);padding:16px 34px;border-radius:2px;text-decoration:none;font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:1px;transition:transform .3s,box-shadow .3s}
+.button:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(212,175,55,.25)}
+
+/* Divisor com sobrancelhas e olho */
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;max-width:420px;margin:0 auto}
+.divider span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
+.divider span:last-child{background:linear-gradient(270deg,transparent,var(--gold-deep))}
+.divider .ic{width:30px;height:22px}
+
+section{padding:100px 20px}
+.container{max-width:1100px;margin:auto}
+.section-title{text-align:center;margin-bottom:56px}
+.section-title .ic{width:40px;height:30px;margin-bottom:10px}
+.section-title h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,4.4vw,38px);line-height:1.2;letter-spacing:4px;text-transform:uppercase;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section-title p{color:var(--muted);margin-top:8px}
+
+/* Serviços */
+.services{background:var(--ink)}
+.service-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.service{flex:0 1 calc(33.333% - 14px)}
+.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:38px}
+.tab-btn{background:none;border:1px solid var(--line);color:var(--muted);font-family:var(--serif);font-size:14px;letter-spacing:2px;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:.3s}
+.tab-btn:hover{border-color:var(--gold);color:var(--gold-light)}
+.tab-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.08)}
+.tab-panel{display:none}
+.tab-panel.active{display:flex}
+.service{position:relative;border:1px solid var(--line);padding:44px 30px 34px;background:var(--panel);text-align:center;transition:transform .3s,border-color .3s}
+.service::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,175,55,.12);pointer-events:none}
+.service:hover{transform:translateY(-6px);border-color:var(--gold)}
+.service .ic{width:52px;height:52px;margin-bottom:18px}
+.service h3{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.service p{color:var(--muted);margin-bottom:22px}
+.price{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--gold-light)}
+
+/* Galeria */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gallery-item{height:340px;overflow:hidden;background:linear-gradient(135deg,#191919,#302611);border:1px solid var(--line);padding:8px}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.gallery-item:hover img{transform:scale(1.05)}
+
+/* Agendamento */
+.booking{background:var(--ink)}
+form{max-width:650px;margin:auto;background:var(--panel);padding:42px;border:1px solid var(--line);position:relative}
+form::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,175,55,.12);pointer-events:none}
+label{display:block;margin-bottom:8px;color:var(--gold);font-size:15px;letter-spacing:.5px}
+input,select{width:100%;padding:14px;margin-bottom:22px;background:var(--black);border:1px solid #3b3426;color:var(--text);font-family:var(--sans);font-size:15px;font-weight:300;outline:none;transition:border-color .3s}
+input:focus,select:focus{border-color:var(--gold)}
+form .button{border:none;cursor:pointer}
+
+/* Horários em quadrados */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,88px);gap:12px;margin-bottom:22px}
+.slot{width:88px;height:88px;padding:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--black);border:1px solid #3b3426;color:var(--text);font-family:var(--serif);font-size:18px;letter-spacing:1px;cursor:pointer;transition:.3s}
+.slot small{font-family:var(--sans);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.slot:hover:not(:disabled){border-color:var(--gold);color:var(--gold-light)}
+.slot.sel{background:linear-gradient(135deg,var(--gold-light),var(--gold) 50%,var(--gold-deep));border-color:var(--gold);color:var(--black)}
+.slot.sel small{color:var(--black)}
+.slot:disabled{cursor:not-allowed;color:#6b6250;border-color:#2b2416;background:repeating-linear-gradient(45deg,#0c0a07,#0c0a07 6px,#15110a 6px,#15110a 12px)}
+.slot:disabled .t{text-decoration:line-through}
+.slot:disabled small{color:#8a5a4a}
+.slots-hint{grid-column:1/-1;margin:0;color:var(--muted);font-size:14px}
+
+/* Contato */
+.contact{text-align:center}
+.contact p{color:var(--muted);margin:10px 0;font-size:17px}
+.contact p strong{color:var(--gold);font-weight:500;margin-right:6px}
+.contact .button{margin-top:26px}
+
+footer{text-align:center;padding:34px 20px;border-top:1px solid var(--line);color:#8a8272;font-size:14px}
+footer .divider{margin-bottom:18px;max-width:260px}
+footer strong{color:var(--gold);font-weight:500}
+
+.add-btn{margin-top:18px;background:none;border:1px solid var(--gold);color:var(--gold);padding:10px 22px;font-family:var(--serif);font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:.3s}
+.add-btn:hover,.add-btn.on{background:var(--gold);color:var(--black)}
+.cart-box{background:var(--black);border:1px solid #3b3426;padding:14px 16px;margin-bottom:14px}
+.cart-empty{margin:0;color:var(--muted);font-size:14px}
+.cart-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #2b2416}
+.cart-row span:first-child{flex:1}
+.cart-x{width:auto!important;background:none;border:none;color:var(--gold);font-size:22px;line-height:1;cursor:pointer;padding:0 4px}
+.cart-total{display:flex;justify-content:space-between;padding-top:12px;color:var(--gold-light);font-family:var(--serif);font-size:20px}
+.cart-add{display:flex;gap:10px;margin-bottom:22px}
+.cart-add select{margin-bottom:0}
+.cart-add button{width:auto;flex:none;padding:0 20px;background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--serif);letter-spacing:2px;font-size:12px;text-transform:uppercase;cursor:pointer}
+.cart-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));background:var(--black);border-top:1px solid var(--gold);font-family:var(--serif);color:var(--gold-light)}
+.cart-bar .button{padding:11px 24px;font-size:14px}
+
+@media (max-width:1000px){
+    .service{flex-basis:calc(50% - 10px)}
+}
+
+@media (max-width:700px){
+    nav{flex-direction:column;gap:8px;padding:12px 15px}
+    nav ul{gap:18px}
+    nav a{font-size:13px}
+    .hero{padding-top:150px}
+    .gallery{grid-template-columns:1fr}
+    /* Serviços: dois por linha no celular */
+    .service-grid{gap:12px}
+    .service{flex:0 1 calc(50% - 6px);min-width:0;padding:28px 12px 22px}
+    .service::before{inset:5px}
+    .service .ic{width:40px;height:40px;margin-bottom:12px}
+    .service h3{font-size:14px;letter-spacing:1px;margin-bottom:8px;overflow-wrap:anywhere}
+    .service p{font-size:13px;line-height:1.45;margin-bottom:14px}
+    .price{font-size:22px}
+    .add-btn{margin-top:12px;padding:9px 10px;font-size:11px;letter-spacing:1px;width:100%}
+    .tab-btn{padding:10px 18px;font-size:13px}
+    .gallery-item{height:320px}
+    section{padding:76px 18px}
+    form{padding:30px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+    .hero-logo{animation:none}
+    html{scroll-behavior:auto}
+}
+
+/* ===== Keyla v2: carrossel, reserva guiada e brilho ===== */
+section,.car,form{scroll-margin-top:84px}
+.hero{flex-direction:column;min-height:0;padding:112px 0 56px}
+.hero-content{padding:0 20px}
+.hero-logo{width:min(400px,68vw)}
+.hero h2{margin-bottom:16px}
+.hero p{margin-bottom:26px;font-size:16px}
+.services{background:var(--black)}
+.contact{background:var(--ink)}
+
+.car{--sw:min(300px,68vw);position:relative;width:100%;max-width:1100px;margin:4px auto 0}
+.car-track{position:relative;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:22px calc(50% - var(--sw)/2) 26px;outline-offset:-4px}
+.car-track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 var(--sw);height:calc(var(--sw)*1.28);margin:0;position:relative;scroll-snap-align:center;border:1px solid var(--line);background:linear-gradient(135deg,#191919,#302611);transform:scale(.88);opacity:.5;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s,border-color .7s,box-shadow .7s}
+.slide.on{transform:none;opacity:1;border-color:var(--gold);box-shadow:0 20px 60px rgba(217,165,79,.2)}
+.slide .im{position:absolute;inset:7px;overflow:hidden}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.slide.ct .im::before{content:"";position:absolute;inset:-24px;background:var(--im) center/cover;filter:blur(20px)}
+.slide.ct img{object-fit:contain}
+.slide.on .im::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 38%,rgba(255,236,185,.38) 50%,transparent 62%);transform:translateX(-130%);animation:brilho 5s ease-in-out 1s infinite}
+.slide .cap{position:absolute;left:7px;right:7px;bottom:7px;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(5,4,3,.88));color:var(--gold-light);text-align:left;pointer-events:none}
+.slide .cap b{display:block;font:500 16px var(--serif)}
+.slide .cap em{font:300 14px var(--sans);font-style:normal;color:var(--text)}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);background:rgba(5,4,3,.75);color:var(--gold-light);font-size:26px;line-height:1;cursor:pointer}
+.car-nav.prev{left:calc(50% - var(--sw)/2 - 70px)}
+.car-nav.next{right:calc(50% - var(--sw)/2 - 70px)}
+.car-dots{display:flex;justify-content:center;gap:8px;margin:2px 0 14px}
+.car-dots button{width:8px;height:8px;padding:0;border:1px solid var(--gold-deep);border-radius:8px;background:none;cursor:pointer;transition:.4s}
+.car-dots button.on{width:26px;background:var(--gold)}
+.hero .car-phrase{min-height:3.4em;max-width:520px;margin:0 auto 22px;padding:0 20px;font-family:var(--serif);font-size:clamp(16px,3.6vw,20px);line-height:1.5;color:var(--gold-light)}
+.pop{animation:entrar .6s ease both}
+@keyframes entrar{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.trust{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 34px;max-width:900px;margin:-22px auto 42px;color:var(--muted);font-size:14px;text-align:center}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust .ic{width:22px;height:22px}
+.prog{display:flex;gap:6px;margin-bottom:22px}
+.prog i{flex:1;height:3px;background:#2b2416;transition:background .5s}
+.prog i.on{background:var(--gold-grad)}
+.warm{min-height:3.2em;margin:0 0 22px;color:var(--gold-light);font-family:var(--serif);font-size:16px;line-height:1.5;text-align:center}
+.warm.err{color:#e9a79e}
+.step{display:none}
+.step.on{display:block;animation:entrar .5s ease both}
+.step .tabs{margin-bottom:18px;gap:8px}
+.step .tab-btn{padding:9px 16px;font-size:12px}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:16px}
+.chip{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;background:var(--black);border:1px solid #3b3426;color:var(--text);padding:14px 16px;font:300 15px var(--sans);cursor:pointer;transition:.3s}
+.chip b{font:500 16px var(--serif);color:var(--gold-light)}
+.chip:hover,.chip.on{border-color:var(--gold)}
+.chip.on{background:rgba(217,165,79,.1)}
+.nav-row{display:flex;gap:12px;margin-top:8px}
+.nav-row .button{flex:1;text-align:center}
+.ghost{background:none;border:1px solid var(--line);color:var(--muted);padding:0 22px;cursor:pointer;font:400 14px var(--sans);letter-spacing:1px}
+.resumo{background:var(--black);border:1px solid #3b3426;padding:14px 16px;font-size:15px;color:var(--muted);line-height:1.7}
+[hidden]{display:none!important}
+
+/* Brilho nas opções */
+@keyframes brilho{0%,55%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+.button,.add-btn,.tab-btn,.chip,.slot{position:relative;overflow:hidden;isolation:isolate}
+.button::after,.add-btn::after,.tab-btn::after,.chip::after,.slot:not(:disabled)::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 35%,rgba(255,244,214,.55) 50%,transparent 65%);transform:translateX(-130%)}
+.button:hover::after,.add-btn:hover::after,.tab-btn:hover::after,.chip:hover::after,.slot:hover:not(:disabled)::after{transform:translateX(130%);transition:transform .9s}
+.shine::after,.add-btn.on::after,.chip.on::after,.slot.sel::after,.tab-btn.active::after{animation:brilho 3.8s ease-in-out infinite}
+.service{overflow:hidden}
+.service::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(252,222,143,.08) 50%,transparent 60%);transform:translateX(-130%);pointer-events:none}
+.service:hover::after{transform:translateX(130%);transition:transform 1.1s}
+.service .old{display:block;color:var(--muted);font-size:14px;text-decoration:line-through}
+.service .promo{font-size:13px;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+
+@media(max-width:700px){
+    section,.car,form{scroll-margin-top:100px}
+    .hero{padding-top:140px}
+    .car-nav{display:none}
+    .chips{grid-template-columns:1fr}
+    .trust{margin-top:-28px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== Keyla v3: espaços compactos, carrossel flutuante e celular ===== */
+html { scroll-padding-top: 92px; }
+body { overflow-x: hidden; }
+section:not(.hero) { padding: 66px 20px; }
+.section-title { margin-bottom: 28px; }
+.section-title h2 { letter-spacing: 2.2px; }
+.hero { padding: 104px 12px 30px; }
+.hero-content { width: 100%; }
+.hero-logo { width: min(350px, 77vw); }
+.hero h2 { margin-bottom: 13px; }
+.hero p { margin-bottom: 15px; max-width: 550px; }
+.hero .car-phrase { min-height: 0; margin-bottom: 14px; font-size: 16px; }
+.hero > .button { border-radius: 12px; padding: 13px 24px; }
+.car { --sw:min(282px, 67vw); margin-top: 2px; }
+.car-track { gap: 13px; padding-top: 14px; padding-bottom: 17px; scroll-snap-type: x mandatory; scroll-padding-inline: calc(50% - var(--sw) / 2); -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; cursor: grab; }
+.car-track.arrastando { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+.slide { height: calc(var(--sw) * 1.22); border-radius: 22px; overflow: hidden; transform: scale(.92) translateY(3px); opacity: .68; transition: transform .42s cubic-bezier(.2,.8,.2,1),opacity .42s,border-color .42s,box-shadow .42s; box-shadow: 0 10px 28px rgba(0,0,0,.28); }
+.slide.on { transform: scale(1) translateY(-4px); opacity: 1; border-color: var(--gold); animation: flutuar 5s ease-in-out infinite; box-shadow: 0 18px 45px rgba(217,165,79,.23); }
+.slide .im { inset: 6px; border-radius: 17px; }
+.slide .cap { bottom: 6px; left: 6px; right: 6px; padding: 45px 15px 14px; border-radius: 0 0 16px 16px; }
+.slide .cap b { font-size: 15px; line-height: 1.35; }
+.slide .cap em { display: block; margin-top: 3px; font-size: 13px; }
+.slide .im::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg,transparent 38%,rgba(255,236,185,.30) 50%,transparent 62%); transform: translateX(-130%); }
+.slide:hover .im::after,.slide.on .im::after { animation: brilho 5s ease-in-out 1s infinite; }
+.slide:hover { border-color: var(--gold); }
+.car-nav { width: 42px; height: 42px; }
+.car-dots { margin: 0 0 10px; }
+@keyframes flutuar { 0%,100% { transform: scale(1) translateY(-2px); } 50% { transform: scale(1) translateY(-8px); } }
+.tabs { gap: 8px; margin-bottom: 22px; }
+.tab-btn { border-radius: 12px; padding: 10px 17px; }
+.service-grid { gap: 14px; }
+.service { border-radius: 16px; padding: 29px 20px 23px; }
+.service::before { border-radius: 12px; }
+.service h3 { font-size: 18px; }
+.service p { margin-bottom: 13px; }
+.add-btn { border-radius: 10px; }
+.booking { background: var(--ink); }
+form { border-radius: 18px; padding: 27px; }
+form::before { border-radius: 13px; }
+input,select { border-radius: 10px; margin-bottom: 15px; }
+.slot { border-radius: 13px; }
+.chip { border-radius: 13px; }
+.warm { min-height: 0; margin-bottom: 16px; }
+.trust { margin: 0 auto 22px; }
+.nav-row .button,.ghost { border-radius: 12px; }
+.booking-note { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.booking-note strong { color: var(--gold-light); font-weight: 500; }
+.wa-fallback { display: block; margin-top: 12px; text-align: center; border-radius: 12px; }
+.important { background: var(--black); }
+.protocol-card { max-width: 780px; margin: 0 auto; padding: 27px 32px; background: var(--panel); border: 1px solid var(--line); border-radius: 19px; box-shadow: 0 12px 40px rgba(0,0,0,.15); }
+.protocol-card h3 { font: 500 clamp(18px,2.5vw,23px) var(--serif); color: var(--gold-light); letter-spacing: 1px; margin-bottom: 17px; }
+.protocol-list { list-style: none; display: grid; gap: 12px; }
+.protocol-list li { position: relative; padding-left: 25px; color: var(--text); font-size: 15px; line-height: 1.65; }
+.protocol-list li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--gold); }
+.protocol-list strong { color: var(--gold-light); font-weight: 500; }
+.contact .button { border-radius: 12px; margin-top: 16px; }
+.contact p { margin: 7px 0; }
+@media (max-width: 700px) {
+    html { scroll-padding-top: 104px; }
+    section:not(.hero) { padding: 39px 14px; }
+    nav { gap: 5px; padding: 8px 10px 9px; }
+    nav .logo { font-size: 16px; letter-spacing: 3px; gap: 7px; }
+    nav .logo img { height: 31px; }
+    nav ul { width: 100%; justify-content: center; flex-wrap: wrap; gap: 4px 13px; }
+    nav a { font-size: 11px; }
+    .hero { padding: 106px 0 18px; }
+    .hero-content { padding: 0 16px; }
+    .hero-logo { width: min(290px,76vw); margin-bottom: 0; }
+    .hero h2 { font-size: 15px; letter-spacing: 3px; margin-bottom: 11px; }
+    .hero .divider { max-width: 265px; }
+    .hero p { font-size: 13px; line-height: 1.5; margin-bottom: 10px; }
+    .hero .car-phrase { font-size: 13px; line-height: 1.5; margin-bottom: 11px; padding: 0 14px; }
+    .hero > .button { padding: 12px 18px; font-size: 12px; }
+    .car { --sw:min(257px,70vw); }
+    .car-track { gap: 10px; padding-top: 12px; padding-bottom: 16px; }
+    .slide { border-radius: 19px; }
+    .slide .im { inset: 5px; border-radius: 15px; }
+    .slide .cap { left: 5px; right: 5px; bottom: 5px; padding: 35px 10px 10px; border-radius: 0 0 13px 13px; }
+    .slide .cap b { font-size: 14px; }
+    .section-title { margin-bottom: 22px; }
+    .section-title h2 { font-size: clamp(21px,6.2vw,29px); letter-spacing: 1.8px; }
+    .section-title p { font-size: 13px; margin-top: 5px; }
+    .tabs { gap: 7px; margin-bottom: 18px; }
+    .tab-btn { padding: 9px 12px; font-size: 11px; letter-spacing: .7px; }
+    .service-grid { gap: 10px; }
+    .service { flex: 0 1 calc(50% - 5px); padding: 22px 10px 17px; border-radius: 14px; }
+    .service::before { inset: 4px; border-radius: 11px; }
+    .service .ic { width: 35px; height: 35px; margin-bottom: 8px; }
+    .service h3 { font-size: 13px; letter-spacing: .7px; }
+    .service p { font-size: 12px; margin-bottom: 10px; }
+    .price { font-size: 20px; }
+    .service .old { font-size: 12px; }
+    .service .promo { font-size: 10px; }
+    .add-btn { margin-top: 10px; padding: 8px; font-size: 10px; }
+    form { padding: 20px 16px; border-radius: 14px; }
+    form::before { inset: 5px; border-radius: 10px; }
+    .trust { gap: 8px 14px; margin: 0 auto 15px; font-size: 11px; }
+    .trust .ic { width: 18px; height: 18px; }
+    .chips { grid-template-columns: 1fr; gap: 8px; }
+    .chip { padding: 12px; font-size: 14px; }
+    .chip b { font-size: 14px; }
+    .nav-row .button { padding: 12px 10px; font-size: 12px; }
+    .ghost { padding: 0 12px; font-size: 12px; }
+    .slots { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+    .slot { width: 100%; height: 72px; font-size: 16px; }
+    .contact p { font-size: 14px; overflow-wrap: anywhere; }
+    .protocol-card { padding: 19px 17px; border-radius: 14px; }
+    .protocol-card h3 { font-size: 17px; }
+    .protocol-list { gap: 11px; }
+    .protocol-list li { font-size: 13px; padding-left: 20px; }
+    .cart-bar { padding: 9px 14px calc(9px + env(safe-area-inset-bottom,0px)); font-size: 12px; }
+    .cart-bar .button { padding: 9px 14px; font-size: 12px; }
+    footer { padding: 24px 12px; font-size: 12px; }
+}
+@media (max-width: 360px) {
+    nav ul { gap: 4px 9px; }
+    nav a { font-size: 10px; }
+    .service { padding: 18px 8px 15px; }
+    .tab-btn { padding: 8px 9px; }
+}
+@media (prefers-reduced-motion: reduce) { .slide.on { animation:none; } .slide .im::after { animation:none!important; } }
+
+/* ===== Keyla v4: galeria realmente infinita + atendente virtual ===== */
+.car-track.sem-snap { scroll-snap-type: none !important; scroll-behavior: auto !important; }
+.car-track { overscroll-behavior-x:contain; touch-action:pan-x pan-y; }
+.car-dots { display:none !important; }
+.atendente-flutuante {
+    position:fixed; right:14px; bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    z-index:1050; width:212px; height:127px;
+    transition:bottom .3s ease,opacity .25s ease,transform .25s ease;
+    filter:drop-shadow(0 12px 18px rgba(0,0,0,.36));
+}
+.atendente-atalho { display:block;position:relative;width:100%;height:100%; color:var(--text);text-decoration:none; }
+.atendente-avatar {
+    display:block; position:absolute; bottom:0; right:0; width:105px;height:105px;object-fit:contain;
+    filter:drop-shadow(0 5px 3px rgba(0,0,0,.18));
+    animation:assistenteFlutua 3.2s ease-in-out infinite;
+    transition:transform .2s ease;
+}
+.atendente-atalho:hover .atendente-avatar,.atendente-atalho:focus-visible .atendente-avatar {transform:scale(1.07)}
+.atendente-balao {
+    position:absolute; right:91px; bottom:52px; width:127px;
+    padding:11px 10px; text-align:center; white-space:nowrap;
+    background:linear-gradient(145deg,#211709,#100d08); color:var(--gold-light);
+    font:500 12px/1.42 var(--sans); border:1px solid var(--gold);
+    border-radius:15px 15px 3px 15px;
+    box-shadow:0 7px 24px rgba(0,0,0,.3); animation:atendenteEntrada .6s ease both;
+}
+.atendente-status {position:absolute;bottom:7px;right:8px;width:12px;height:12px;border-radius:50%;background:#68c991;border:2px solid #0b0907;pointer-events:none}
+.atendente-fechar { position:absolute;right:100px;bottom:113px;width:25px;height:25px;border:1px solid var(--line);background:#100d08;color:var(--muted);border-radius:50%;cursor:pointer;font:20px/18px var(--sans);padding:0; }
+.balao-fechado {width:107px;height:113px}
+.balao-fechado .atendente-balao,.balao-fechado .atendente-fechar {display:none}
+.carrinho-ativo .atendente-flutuante {bottom:calc(89px + env(safe-area-inset-bottom,0px))}
+/* A atendente permanece no agendamento: só diminui para não ocupar a tela. */
+.em-agendamento .atendente-flutuante {opacity:1;pointer-events:auto;transform:none;bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.em-agendamento .atendente-avatar {width:80px;height:86px}
+.em-agendamento .atendente-balao {right:72px;bottom:56px}
+.atendente-atalho {background:none;border:none;padding:0;cursor:pointer;font:inherit;text-align:inherit;-webkit-tap-highlight-color:transparent}
+.atendente-balao {white-space:normal;overflow-wrap:break-word;width:186px;min-height:46px;padding:11px 12px;font-size:12px;line-height:1.42;text-align:left;transition:opacity .2s,transform .2s}
+.atendente-fechar {right:96px;bottom:120px}
+.atendente-flutuante {width:275px;height:133px}
+.atendente-avatar {width:103px;height:110px}
+.atendente-flutuante.balao-fechado {width:110px;height:116px}
+.atendente-flutuante.digitando .atendente-balao,.atendente-flutuante.digitando .atendente-fechar {display:none}
+.atendente-flutuante.digitando {width:76px;height:82px;bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.atendente-flutuante.digitando .atendente-avatar {width:68px;height:76px}
+.atendente-balao.mudando {animation:atendenteEntrada .35s ease both}
+
+@keyframes assistenteFlutua { 0%,100%{translate:0 0}50%{translate:0 -7px} }
+@keyframes atendenteEntrada {from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+@media(max-width:700px) {
+    .atendente-flutuante {right:5px;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:170px;height:110px}
+    .atendente-avatar {width:82px;height:92px}
+    .atendente-balao {right:72px;bottom:44px;width:108px;padding:9px 7px;font-size:11px}
+    .atendente-fechar {right:79px;bottom:97px;width:23px;height:23px}
+    .balao-fechado {width:86px;height:95px}
+    .carrinho-ativo .atendente-flutuante {bottom:calc(75px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:700px){
+  .atendente-flutuante {width:208px;height:111px;right:5px;bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  .atendente-avatar {width:70px;height:80px}
+  .atendente-balao {right:66px;bottom:46px;width:145px;min-height:42px;padding:9px 10px;font-size:11px;line-height:1.38;border-radius:12px 12px 3px 12px}
+  .atendente-fechar {right:67px;bottom:100px;width:21px;height:21px;font-size:18px}
+  .em-agendamento .atendente-flutuante {width:208px;height:106px;right:5px;bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  .em-agendamento .atendente-avatar {width:65px;height:75px}
+  .em-agendamento .atendente-balao {right:62px;bottom:43px;width:145px}
+  .atendente-flutuante.balao-fechado {width:74px;height:82px}
+  .atendente-flutuante.digitando {width:62px;height:70px}
+  .atendente-flutuante.digitando .atendente-avatar {width:55px;height:65px}
+  .carrinho-ativo .atendente-flutuante {bottom:calc(75px + env(safe-area-inset-bottom,0px))}
+  .em-agendamento.carrinho-ativo .atendente-flutuante {bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:360px){.atendente-balao,.em-agendamento .atendente-balao{width:126px;font-size:10.5px}.atendente-flutuante{width:190px}}
+/* Apenas a boneca e o botão de fechar recebem cliques; o balão não bloqueia o formulário. */
+.atendente-flutuante,.em-agendamento .atendente-flutuante {pointer-events:none}
+.atendente-atalho {position:absolute;right:0;bottom:0;width:103px;height:110px;pointer-events:auto;z-index:2}
+.atendente-avatar {width:100%;height:100%;pointer-events:none}
+.atendente-balao {pointer-events:none;z-index:1}
+.atendente-fechar {pointer-events:auto;z-index:3}
+@media(max-width:700px){
+  .atendente-atalho {width:70px;height:80px}
+  .em-agendamento .atendente-atalho {width:65px;height:75px}
+  .atendente-flutuante.digitando .atendente-atalho {width:55px;height:65px}
+}
+@media(prefers-reduced-motion:reduce) {.atendente-avatar,.atendente-balao{animation:none!important}}
+
+/* ===== KEYLA LASH • ANIMAÇÕES PREMIUM (adicionado sem alterar reservas) ===== */
+:root { --lux-ease:cubic-bezier(.18,.75,.24,1); }
+
+/* Luz ambiente discreta e partículas decorativas no topo */
+.hero { position:relative; isolation:isolate; overflow:hidden; }
+.hero::before {
+  content:"";position:absolute;inset:-14% -25%;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 46% 33% at 50% 17%,rgba(217,165,79,.20),transparent 76%),
+             radial-gradient(ellipse 25% 24% at 18% 63%,rgba(166,107,37,.10),transparent 82%),
+             radial-gradient(ellipse 27% 26% at 82% 76%,rgba(252,222,143,.085),transparent 82%);
+  animation:luxAmbiente 14s ease-in-out infinite alternate;
+}
+.hero > *:not(.lux-estrelas) {position:relative;z-index:1;}
+.lux-estrelas {position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.lux-estrela {
+  position:absolute;display:block;width:var(--s,3px);height:var(--s,3px);left:var(--x);top:var(--y);
+  background:#ffe8ad;box-shadow:0 0 8px 2px rgba(248,206,117,.35);border-radius:50%;
+  opacity:0;animation:luxCintilar var(--dur,6s) ease-in-out var(--delay,0s) infinite;
+}
+.lux-estrela::after {content:"";position:absolute;left:50%;top:50%;height:12px;width:1px;background:linear-gradient(transparent,rgba(255,230,171,.52),transparent);transform:translate(-50%,-50%);}
+@keyframes luxAmbiente {from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(2%,-1%,0) scale(1.06)}}
+@keyframes luxCintilar {0%,19%,100%{opacity:0;transform:scale(.4) translateY(8px)}43%,58%{opacity:.62;transform:scale(1) translateY(0)}}
+
+/* Entrada do logo, título e botão principal */
+.hero-logo {animation:luxLogoEntrada 1.35s var(--lux-ease) both,luxLogoRespira 7.2s ease-in-out 1.35s infinite;transform-origin:center;}
+.hero-content h2 {animation:luxSurgir 1s var(--lux-ease) .22s both;}
+.hero-content .divider {animation:luxSurgir 1s var(--lux-ease) .36s both;}
+.hero-content #intro {animation:luxSurgir 1.05s var(--lux-ease) .5s both;}
+.hero > .button {animation:luxSurgir 1s var(--lux-ease) .83s both,luxBotaoRespira 5s ease-in-out 1.85s infinite;}
+@keyframes luxLogoEntrada {from{opacity:0;filter:blur(9px) drop-shadow(0 0 0 transparent);transform:translate3d(0,19px,0) scale(.94)}to{opacity:1;filter:blur(0) drop-shadow(0 0 15px rgba(217,165,79,.12));transform:translate3d(0,0,0) scale(1)}}
+@keyframes luxLogoRespira {0%,100%{filter:drop-shadow(0 0 5px rgba(217,165,79,.10));transform:translateY(0)}50%{filter:drop-shadow(0 0 20px rgba(217,165,79,.23));transform:translateY(-5px)}}
+@keyframes luxSurgir {from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes luxBotaoRespira {0%,100%{box-shadow:0 0 0 rgba(217,165,79,0)}50%{box-shadow:0 0 23px rgba(217,165,79,.22)}}
+
+/* Revelações de rolagem, com fallback se o navegador não suportar JS/observador */
+body.lux-pronto .lux-revelar {opacity:0;transform:translate3d(0,27px,0) scale(.985);filter:blur(4px);transition:opacity .8s var(--lux-ease),transform .85s var(--lux-ease),filter .75s ease;transition-delay:var(--lux-atraso,0ms);will-change:opacity,transform;}
+body.lux-pronto .lux-revelar.lux-visivel {opacity:1;transform:translate3d(0,0,0) scale(1);filter:none;will-change:auto;}
+body.lux-pronto .service.lux-visivel:hover {transform:translateY(-6px) scale(1.015);}
+
+/* Títulos com luz em deslocamento, sem alterar o texto */
+.section-title h2 {background-image:linear-gradient(100deg,#976323 0%,#e2b56b 28%,#fff0bc 48%,#d6a251 68%,#976323 100%);background-size:220% 100%;animation:luxTextoDourado 9s ease-in-out infinite alternate;}
+@keyframes luxTextoDourado {0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.section-title > .ic {transform-origin:center;animation:luxIcone 5s ease-in-out infinite;}
+@keyframes luxIcone {0%,100%{filter:drop-shadow(0 0 0 transparent);transform:scale(1)}50%{filter:drop-shadow(0 0 7px rgba(255,219,145,.4));transform:scale(1.065)}}
+
+/* Microinterações de serviços e botões */
+.service {transition:transform .35s var(--lux-ease),border-color .35s,box-shadow .4s;}
+.service:hover {box-shadow:0 18px 36px rgba(0,0,0,.28),0 0 19px rgba(217,165,79,.10);}
+.service .ic {transform-origin:center;transition:transform .45s var(--lux-ease),filter .45s ease;}
+.service:hover .ic {transform:scale(1.12) rotate(-5deg);filter:drop-shadow(0 0 9px rgba(217,165,79,.3));}
+.button,.add-btn,.tab-btn,.chip,.slot {transition:transform .26s var(--lux-ease),background-color .3s,border-color .3s,color .3s,box-shadow .3s;}
+.button:active,.add-btn:active,.tab-btn:active,.chip:active,.slot:not(:disabled):active {transform:scale(.966);}
+.chip.on,.slot.sel,.add-btn.on {animation:luxSelecionado .44s var(--lux-ease);}
+@keyframes luxSelecionado {0%{box-shadow:0 0 0 0 rgba(217,165,79,.28)}50%{box-shadow:0 0 0 6px rgba(217,165,79,.11)}100%{box-shadow:0 0 0 0 rgba(217,165,79,0)}}
+
+/* Passagens entre as etapas do agendamento */
+.step.on {animation:luxEtapa .48s var(--lux-ease) both;}
+@keyframes luxEtapa {from{opacity:0;transform:translate3d(13px,9px,0);filter:blur(3px)}to{opacity:1;transform:translate3d(0,0,0);filter:none}}
+.step.on .chip {animation:luxItem .43s var(--lux-ease) both;}
+.step.on .chip:nth-child(2){animation-delay:45ms}
+.step.on .chip:nth-child(3){animation-delay:90ms}
+.step.on .chip:nth-child(4){animation-delay:135ms}
+.step.on .chip:nth-child(5){animation-delay:180ms}
+.step.on .chip:nth-child(n+6){animation-delay:220ms}
+@keyframes luxItem {from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.prog i.on {box-shadow:0 0 10px rgba(217,165,79,.28);}
+.nav-row .button:hover:not(:disabled) {box-shadow:0 6px 22px rgba(217,165,79,.23);}
+
+/* Filete de leitura discreto na parte de cima */
+.lux-progresso {position:fixed;left:0;top:0;z-index:1100;pointer-events:none;height:2px;width:100%;transform:scaleX(0);transform-origin:left center;background:linear-gradient(90deg,#936023,#fcde8f,#d9a54f);box-shadow:0 0 9px rgba(252,222,143,.38);}
+
+@media (max-width:700px){
+ .lux-estrela:nth-child(n+8){display:none}
+ body.lux-pronto .lux-revelar {transform:translate3d(0,19px,0) scale(.991);filter:blur(2px);transition-duration:.65s;}
+ body.lux-pronto .lux-revelar.lux-visivel {transform:none;filter:none}
+ .hero-logo{animation-duration:1.05s,7.2s}
+ .step.on{animation-duration:.38s}
+}
+@media (prefers-reduced-motion:reduce){
+ .hero::before,.lux-estrela,.hero-logo,.hero-content h2,.hero-content .divider,.hero-content #intro,.hero>.button,.section-title h2,.section-title>.ic,.step.on,.step.on .chip,.chip.on,.slot.sel,.add-btn.on {animation:none!important;}
+ body.lux-pronto .lux-revelar,body.lux-pronto .lux-revelar.lux-visivel {opacity:1!important;transform:none!important;filter:none!important;transition:none!important;will-change:auto!important;}
+ .lux-progresso {transition:none}
+}
+
+
+/* Logo integrada ao fundo: sem caixa, com brilho dourado suave */
+.hero-logo{filter:drop-shadow(0 0 22px rgba(212,175,55,.28)) drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.logo img{filter:drop-shadow(0 0 8px rgba(212,175,55,.3))}
+</style>
+</head>
+
+<body>
+
+<!-- Símbolos reutilizáveis -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-eye" viewBox="0 0 64 64">
+        <path d="M5 38 Q32 14 59 38 Q32 56 5 38Z"/>
+        <circle cx="32" cy="38" r="7"/>
+        <path d="M14 30 L9 22 M23 25 L19 15 M32 22 L32 11 M41 25 L45 15 M50 30 L55 22"/>
+    </symbol>
+    <symbol id="i-brow" viewBox="0 0 64 40">
+        <path d="M4 30 C14 12 38 6 60 16 C40 14 20 18 4 30Z"/>
+        <path d="M14 22 L18 19 M24 17 L28 15 M35 14 L39 14" opacity=".7"/>
+    </symbol>
+    <symbol id="i-lashes" viewBox="0 0 64 64">
+        <path d="M32 54 C22 44 14 34 9 22 M32 54 C26 42 22 28 20 14 M32 54 L32 9 M32 54 C38 42 42 28 44 14 M32 54 C42 44 50 34 55 22"/>
+        <path d="M22 56 L42 56"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 64 64">
+        <path d="M32 6 L37 27 L58 32 L37 37 L32 58 L27 37 L6 32 L27 27Z"/>
+        <path d="M52 8 L53.5 13 L58.5 14.5 L53.5 16 L52 21 L50.5 16 L45.5 14.5 L50.5 13Z"/>
+    </symbol>
+</svg>
+
+<!-- MENU -->
+<header>
+    <nav>
+        <div class="logo">
+            <img src="imagens/logo-marca.png" alt="">
+            Keyla Lash
+        </div>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#galeria">Trabalhos</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#agendamento">Agendar</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- INÍCIO + CARROSSEL -->
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <img class="hero-logo" src="imagens/logo.png" alt="Keyla Lash — extensão de cílios">
+        <h1 class="sr-only">Keyla Lash</h1>
+        <h2 id="slogan">Realce seu olhar.</h2>
+        <div class="divider" style="margin-bottom:18px">
+            <span></span>
+            <svg class="ic"><use href="#i-brow"/></svg>
+            <svg class="ic"><use href="#i-sparkle"/></svg>
+            <svg class="ic flip"><use href="#i-brow"/></svg>
+            <span></span>
+        </div>
+        <p id="intro">Beleza, elegância e sofisticação em cada detalhe. Especialista em extensão de cílios, para valorizar ainda mais a sua beleza.</p>
+    </div>
+
+    <div class="car" id="galeria" role="region" aria-roledescription="carrossel" aria-label="Resultados da Keyla">
+        <div class="car-track" id="carTrack" tabindex="0"></div>
+        <button type="button" class="car-nav prev" id="carPrev" aria-label="Foto anterior">&#8249;</button>
+        <button type="button" class="car-nav next" id="carNext" aria-label="Próxima foto">&#8250;</button>
+    </div>
+    <p class="car-phrase" id="carPhrase"></p>
+    <a href="#agendamento" class="button shine">Quero realçar meu olhar</a>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services" id="servicos">
+    <div class="container">
+        <div class="section-title">
+            <svg class="ic"><use href="#i-brow"/></svg>
+            <h2>Escolha seu olhar</h2>
+            <p>Cílios, sobrancelhas e epilação, tudo feito com cuidado e precisão.</p>
+        </div>
+        <div class="tabs" id="svcTabs" role="tablist"></div>
+        <div class="service-grid" id="svcGrid"></div>
+    </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section class="booking" id="agendamento">
+    <div class="container">
+
+        <div class="section-title">
+            <svg class="ic"><use href="#i-eye"/></svg>
+            <h2>Reserve seu horário</h2>
+            <p id="bookingIntro">Preencha os dados e confirmamos pelo WhatsApp.</p>
+        </div>
+
+        <ul class="trust">
+            <li><svg class="ic"><use href="#i-sparkle"/></svg>Hora marcada só para você</li>
+            <li><svg class="ic"><use href="#i-lashes"/></svg>Cada fio aplicado com calma e precisão</li>
+            <li><svg class="ic"><use href="#i-eye"/></svg>Um olhar natural, do seu jeito</li>
+        </ul>
+
+        <form id="bookingForm" novalidate>
+            <div class="prog" id="prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <p class="warm" id="warm" role="status" aria-live="polite"></p>
+
+            <div class="step on" data-s="1">
+                <label for="name">Como podemos te chamar?</label>
+                <input type="text" id="name" placeholder="Seu nome" minlength="2" maxlength="100" autocomplete="given-name">
+            </div>
+
+            <div class="step" data-s="2">
+                <label>O que vai te deixar ainda mais radiante?</label>
+                <div class="tabs" id="chipTabs" role="tablist"></div>
+                <div class="chips" id="chips"></div>
+                <div class="cart-box" id="cartBox"></div>
+            </div>
+
+            <div class="step" data-s="3">
+                <label for="date">Qual dia fica melhor para você?</label>
+                <input type="date" id="date">
+                <label id="timeLabel">Horário</label>
+                <input type="hidden" id="time">
+                <div class="slots" id="slots" role="group" aria-labelledby="timeLabel"></div>
+            </div>
+
+            <div class="step" data-s="4">
+                <label for="phone">Seu WhatsApp</label>
+                <input type="tel" id="phone" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel">
+                <div class="resumo" id="resumo"></div>
+                <p class="booking-note">A confirmação é feita com sinal de <strong>R$ 30,00</strong>, descontado do valor final. Continue pelo WhatsApp após solicitar seu horário.</p>
+            </div>
+
+            <div class="nav-row">
+                <button type="button" class="ghost" id="bk" hidden>Voltar</button>
+                <button type="button" class="button shine" id="nx">Continuar</button>
+                <button type="submit" class="button shine" id="sub" hidden>Confirmar meu horário</button>
+            </div>
+            <a class="wa-fallback button" id="waFallback" href="#" rel="noopener" hidden>Continuar no WhatsApp</a>
+        </form>
+
+    </div>
+</section>
+
+<div class="cart-bar" id="cartBar"><span id="cartInfo"></span><a href="#agendamento" class="button shine">Agendar</a></div>
+
+<!-- Atendente ilustrada: convite ao formulário, sem chat/IA automática -->
+<aside class="atendente-flutuante" id="atendente" aria-label="Assistente de mensagens do agendamento">
+    <button class="atendente-atalho" id="atendenteBotao" type="button" aria-label="Atendente da Keyla: toque para começar ou ler outra mensagem">
+        <img class="atendente-avatar" src="data:image/webp;base64,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" alt="Atendente virtual ilustrada da Keyla Lash" width="100" height="100" loading="eager">
+        <span class="atendente-status" aria-hidden="true"></span>
+    </button>
+    <span class="atendente-balao" id="atendenteBalao" aria-live="off">Oi, linda! ✨ Vamos agendar?</span>
+    <button class="atendente-fechar" id="fecharBalao" type="button" title="Fechar mensagem da atendente" aria-label="Fechar mensagem da atendente">×</button>
+</aside>
+
+<!-- INFORMAÇÕES IMPORTANTES -->
+<section class="important" id="informacoes" aria-labelledby="infoTitulo">
+    <div class="container">
+        <div class="section-title">
+            <svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg>
+            <h2 id="infoTitulo">Informações importantes</h2>
+        </div>
+        <div class="protocol-card">
+            <h3>Protocolo de agendamento</h3>
+            <ul class="protocol-list">
+                <li>Garanta seu horário com antecedência, não haverá encaixe.</li>
+                <li>Tolerância de atraso de 10 minutos; depois disso o horário é cancelado.</li>
+                <li>Horário reservado mediante sinal de <strong>R$ 30,00</strong>, descontado do valor final. Sem sinal, o agendamento não é realizado.</li>
+                <li>Cancelamentos com no mínimo 48 horas de antecedência para o sinal ser reembolsado.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+    <img src="imagens/logo-marca.png" alt="" style="height:54px;width:auto;margin:0 auto 14px;display:block">
+    © 2026 <strong>Keyla Lash</strong> — Todos os direitos reservados.
+</footer>
+
+<!-- JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://runlbupeeyyfpzshdczz.supabase.co";
+const SUPABASE_KEY = "sb_publishable_NfXfzvCAxGktXCeL0PE_rw_wAcg0qJh";
+const banco = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dinheiro = v => Number(v).toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
+const curto = v => "R$ " + (Number.isInteger(+v) ? +v : (+v).toFixed(2).replace(".", ","));
+const amanhaLocal = () => { const d = new Date(); d.setDate(d.getDate() + 1); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const hojeLocal = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const reduzir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let WHATSAPP_DONA = "5588996857297";
+const PROFISSIONAL = "Keyla";
+let HORARIOS = ["08:00", "14:00", "19:00"];
+
+/* ===== Serviços (padrão; o painel admin substitui pelos dados do Supabase) ===== */
+let CAT = [
+    {nome:"Volume Brasileiro", categoria:"Cílios", preco:80, desc:"Fios em formato de Y que trazem mais volume e definição, mantendo um resultado leve e sofisticado."},
+    {nome:"Volume Híbrido", categoria:"Cílios", preco:80, desc:"A união do fio a fio com o volume: um olhar natural, com textura e preenchimento na medida certa."},
+    {nome:"Volume Fox", categoria:"Cílios", preco:100, desc:"Efeito de olhar alongado e levantado, com fios mais compridos no canto externo para um visual marcante."},
+    {nome:"Volume Glamour", categoria:"Cílios", preco:80, desc:"Volume cheio e intenso, com fios mais densos e curvatura acentuada para um olhar de impacto."},
+    {nome:"Remoção de Cílios", categoria:"Cílios", preco:40, desc:"Retirada cuidadosa das extensões, protegendo e preservando os seus fios naturais."},
+    {nome:"Design Simples", categoria:"Sobrancelha", preco:25, desc:"Modelagem que realça o formato do seu olhar, com acabamento limpo e natural."},
+    {nome:"Brow Lamination", categoria:"Sobrancelha", preco:60, desc:"Alinhamento dos fios para um efeito de sobrancelha cheia, definida e arrumada."},
+    {nome:"Epilação de Buço", categoria:"Epilação", preco:10, desc:"Remoção rápida e delicada dos pelos do buço, com acabamento suave."}
+];
+[["Brasileiro",[115,110],[150,135]],["Híbrido",[115,110],[150,135]],["Fox",[135,130],[170,155]],["Glamour",[115,110],[150,135]]].forEach(([v, d, b]) => {
+    CAT.push({nome:`Combo ${v} + Design`, categoria:"Combos", preco:d[1], antigo:d[0], desc:`Volume ${v} + Design Simples + Epilação de Buço`});
+    CAT.push({nome:`Combo ${v} + Brow`, categoria:"Combos", preco:b[1], antigo:b[0], desc:`Volume ${v} + Brow Lamination + Epilação de Buço`});
+});
+const ICONES = {"Cílios":["i-lashes","i-eye","i-brow","i-sparkle"], "Sobrancelha":["i-brow"], "Epilação":["i-sparkle"], "Combos":["i-sparkle"]};
+const ORDEM = ["Cílios", "Sobrancelha", "Epilação", "Combos"];
+const ativa = {svc:"Cílios", chip:"Cílios"};
+let cart = [], passo = 1, naReserva = false, ocupados = [], diaFechado = false;
+const dateInput = $("date");
+dateInput.min = amanhaLocal();
+
+function categorias() {
+    const todas = [...new Set(CAT.map(s => s.categoria))];
+    return ORDEM.filter(c => todas.includes(c)).concat(todas.filter(c => !ORDEM.includes(c)));
+}
+function renderServicos() {
+    const cs = categorias();
+    ["svc", "chip"].forEach(k => { if (!cs.includes(ativa[k])) ativa[k] = cs[0]; });
+    const abas = k => cs.map(c => `<button type="button" class="tab-btn${c === ativa[k] ? " active" : ""}" data-k="${k}" data-cat="${esc(c)}" role="tab">${esc(c)}</button>`).join("");
+    $("svcTabs").innerHTML = abas("svc");
+    $("chipTabs").innerHTML = abas("chip");
+    $("svcGrid").innerHTML = CAT.filter(s => s.categoria === ativa.svc).map((s, i) => {
+        const ic = (ICONES[s.categoria] || ["i-sparkle"])[i % (ICONES[s.categoria] || [1]).length];
+        const promo = s.antigo > s.preco ? `<small class="old">${curto(s.antigo)}</small><span class="promo">Preço promocional</span><br>` : "";
+        return `<div class="service"><svg class="ic"><use href="#${ic}"/></svg><h3>${esc(s.nome)}</h3><p>${esc(s.desc)}</p><div class="price">${promo}${curto(s.preco)}</div><button type="button" class="add-btn" data-nome="${esc(s.nome)}">Adicionar</button></div>`;
+    }).join("");
+    $("chips").innerHTML = CAT.filter(s => s.categoria === ativa.chip).map(s => `<button type="button" class="chip" data-nome="${esc(s.nome)}"><span>${esc(s.nome)}</span><b>${curto(s.preco)}</b></button>`).join("");
+    renderCart();
+}
+
+/* ===== Frases que valorizam a cliente ===== */
+const FRASES = [
+    "Seu olhar já é lindo. Nós só realçamos.",
+    "Cada detalhe feito com calma, cuidado e precisão.",
+    "Você merece sair daqui se olhando no espelho com um sorriso.",
+    "Uma beleza que combina com você, do jeito que você é.",
+    "Atendimento individual, com hora marcada só para você."
+];
+const ELOGIOS = [
+    "Ótima escolha! Vai realçar ainda mais a sua beleza.",
+    "Amamos essa escolha. Combina muito com você!",
+    "Você tem um gosto lindo. O resultado vai te encantar.",
+    "Esse olhar vai ficar de tirar o fôlego. 💛"
+];
+const nome1 = () => { const n = $("name").value.trim().split(/\s+/)[0] || ""; return n.charAt(0).toUpperCase() + n.slice(1).toLowerCase(); };
+function textoPasso(p) {
+    const n = nome1();
+    return ["", "Cada olhar conta uma história, e o seu merece ser realçado. ✨",
+        `${n}, que nome lindo! Escolha o que vai te deixar ainda mais radiante.`,
+        `Vamos reservar um tempinho só para você, ${n}. Você merece esse cuidado.`,
+        `Quase lá, ${n}! É por aqui que vamos confirmar o seu momento. 💛`][p];
+}
+function falar(m, erro) {
+    const w = $("warm");
+    w.textContent = m;
+    w.classList.toggle("err", !!erro);
+    w.classList.remove("pop"); void w.offsetWidth; w.classList.add("pop");
+}
+
+/* ===== Carrinho ===== */
+const total = () => cart.reduce((t, i) => t + Number(i.preco), 0);
+function alternar(nome) {
+    const i = cart.findIndex(x => x.nome === nome);
+    if (i >= 0) { cart.splice(i, 1); }
+    else {
+        const s = CAT.find(x => x.nome === nome);
+        if (!s) return;
+        // Combo substitui tudo; serviço avulso substitui combo e o item da mesma categoria.
+        cart = s.categoria === "Combos" ? [] : cart.filter(x => x.categoria !== s.categoria && x.categoria !== "Combos");
+        cart.push(s);
+        if (passo === 2) {
+            falar(ELOGIOS[Math.floor(Math.random() * ELOGIOS.length)]);
+            assistenteDizer(`${nome1() ? nome1() + ", " : ""}que escolha linda! Seu momento de cuidado está tomando forma. 💖`);
+        }
+    }
+    renderCart();
+}
+function renderCart() {
+    $("cartBox").innerHTML = cart.length
+        ? cart.map(i => `<div class="cart-row"><span>${esc(i.nome)}</span><span>${dinheiro(i.preco)}</span><button type="button" class="cart-x" data-nome="${esc(i.nome)}" aria-label="Remover ${esc(i.nome)}">\u00d7</button></div>`).join("") + `<div class="cart-total"><span>Total</span><strong>${dinheiro(total())}</strong></div>`
+        : '<p class="cart-empty">Nenhum servi\u00e7o escolhido ainda.</p>';
+    document.querySelectorAll(".add-btn,.chip").forEach(b => {
+        const on = cart.some(x => x.nome === b.dataset.nome);
+        b.classList.toggle("on", on);
+        if (b.classList.contains("add-btn")) b.textContent = on ? "Adicionado \u2713" : "Adicionar";
+    });
+    const carrinhoAparece = Boolean(cart.length && !naReserva);
+    $("cartBar").style.display = carrinhoAparece ? "flex" : "none";
+    document.body.classList.toggle("carrinho-ativo", carrinhoAparece);
+    $("cartInfo").textContent = cart.length + (cart.length === 1 ? " servi\u00e7o" : " servi\u00e7os") + " \u00b7 " + dinheiro(total());
+}
+if ("IntersectionObserver" in window) {
+    new IntersectionObserver(e => {
+        const antes = naReserva;
+        naReserva = e[0].isIntersecting;
+        document.body.classList.toggle("em-agendamento", naReserva);
+        if (naReserva && !antes) mensagemEtapaAssistente(passo);
+        renderCart();
+    }, {threshold: .15}).observe($("agendamento"));
+}
+
+/* ===== Reserva em passos ===== */
+function validar(p) {
+    if (p === 1 && $("name").value.trim().length < 2) return "Conta pra gente o seu nome. Queremos te receber com carinho.";
+    if (p === 2 && !cart.length) return "Escolha pelo menos um serviço. Todos eles vão realçar a sua beleza.";
+    if (p === 3) {
+        if (!dateInput.value) return "Escolha o dia que fica melhor para você.";
+        if (!$("time").value) return "Escolha um horário. Todos são reservados só para você.";
+    }
+    if (p === 4) { const t = $("phone").value.replace(/\D/g, ""); if (!/^[1-9][0-9]{10}$/.test(t)) return "Digite o WhatsApp com DDD e 9 dígitos (ex.: 85 99999-0000)."; }
+    return "";
+}
+function resumo() {
+    const d = dateInput.value ? new Date(dateInput.value + "T12:00:00").toLocaleDateString("pt-BR", {weekday:"long", day:"2-digit", month:"long"}) : "";
+    $("resumo").innerHTML = cart.map(i => `${esc(i.nome)} \u2014 ${dinheiro(i.preco)}`).join("<br>") + `<br><strong style="color:var(--gold-light)">Total ${dinheiro(total())}</strong><br>${esc(d)} às ${esc($("time").value)}`;
+}
+function mostrar(p, rolar) {
+    passo = p;
+    document.querySelectorAll(".step").forEach(s => s.classList.toggle("on", +s.dataset.s === p));
+    [...$("prog").children].forEach((x, k) => x.classList.toggle("on", k < p));
+    $("bk").hidden = p === 1; $("nx").hidden = p === 4; $("sub").hidden = p !== 4;
+    if (p === 4) resumo();
+    falar(textoPasso(p));
+    if (naReserva) mensagemEtapaAssistente(p);
+    if (rolar) $("bookingForm").scrollIntoView({behavior: reduzir ? "auto" : "smooth", block: "start"});
+}
+$("nx").addEventListener("click", () => { const m = validar(passo); if (m) return falar(m, true); mostrar(passo + 1, true); });
+$("bk").addEventListener("click", () => mostrar(passo - 1, true));
+$("cartBar").querySelector("a").addEventListener("click", () => { for (let p = 1; p <= 3; p++) { if (validar(p)) return mostrar(p); } mostrar(4); });
+$("phone").addEventListener("input", e => {
+    const d = e.target.value.replace(/\D/g, "").slice(0, 11), c = d.length > 10 ? 7 : 6;
+    e.target.value = d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, c)}-${d.slice(c)}` : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+});
+
+/* ===== Horários ===== */
+function renderSlots() {
+    const box = $("slots");
+    if (!dateInput.value) { box.innerHTML = '<p class="slots-hint">Escolha uma data para ver os hor\u00e1rios.</p>'; return; }
+    const atual = $("time").value, agora = new Date();
+    const hhmm = String(agora.getHours()).padStart(2, "0") + ":" + String(agora.getMinutes()).padStart(2, "0");
+    const hoje = dateInput.value === hojeLocal();
+    box.innerHTML = HORARIOS.map(h => {
+        const reservado = diaFechado || ocupados.includes(h), passou = hoje && h <= hhmm, oc = reservado || passou, sel = !oc && h === atual;
+        return `<button type="button" class="slot${sel ? " sel" : ""}" data-hora="${h}"${oc ? ` disabled aria-label="${h} indispon\u00edvel"` : ""} aria-pressed="${sel}"><span class="t">${h}</span><small>${diaFechado ? "Folga" : reservado ? "Ocupado" : passou ? "Encerrado" : "Livre"}</small></button>`;
+    }).join("");
+}
+async function indisponiveis(dia) {
+    const {data, error} = await banco.rpc("kl_unavailable", {p_day:dia});
+    if (error) throw error;
+    return (data || []).map(r => String(r.hour).slice(0,5));
+}
+async function carregarHorarios() {
+    const data = dateInput.value;
+    ocupados = [...HORARIOS]; diaFechado = false;
+    if (!data) { $("time").value = ""; renderSlots(); return; }
+    try {
+        if (banco) {
+            const l = await indisponiveis(data);
+            if (dateInput.value !== data) return;
+            diaFechado = l.includes("DIA"); ocupados = l.filter(h => h !== "DIA");
+        }
+    } catch (e) { console.warn("N\u00e3o foi poss\u00edvel carregar os hor\u00e1rios ocupados:", e); }
+    if (diaFechado || ocupados.includes($("time").value)) $("time").value = "";
+    renderSlots();
+}
+dateInput.addEventListener("change", () => {
+    $("time").value = ""; renderSlots(); carregarHorarios();
+    if (dateInput.value) {
+        falar(`Ótima escolha de dia, ${nome1()}! Agora escolha o horário que mais combina com você.`);
+        assistenteDizer("Uma pausa só sua faz bem! 🌸 Vamos achar seu melhor horário?");
+    }
+});
+setInterval(() => { if (!document.hidden && dateInput.value) carregarHorarios(); }, 30000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden && dateInput.value) carregarHorarios(); });
+
+/* ===== Cliques ===== */
+document.addEventListener("click", e => {
+    const a = e.target.closest(".add-btn,.chip,.cart-x"); if (a) return alternar(a.dataset.nome);
+    const t = e.target.closest(".tab-btn[data-k]"); if (t) { ativa[t.dataset.k] = t.dataset.cat; return renderServicos(); }
+    const s = e.target.closest(".slot"); if (s && !s.disabled) {
+        $("time").value = s.dataset.hora; renderSlots();
+        assistenteDizer("Tudo combinando! ✨ Seu momento especial está quase marcado.");
+        return falar("Horário perfeito! Vai ficar guardado só para você. 💛");
+    }
+    const d = e.target.closest("#carDots button"); if (d) ir(+d.dataset.d);
+});
+
+/* ===== Galeria infinita: deslize livre, sem começo ou fim ===== */
+function embaralharFotos(lista) {
+    const copia = [...lista];
+    for (let i = copia.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copia[i], copia[j]] = [copia[j], copia[i]];
+    }
+    return copia;
+}
+let FOTOS_PADRAO = [1, 2, 3].map(n => ({title:"Extensão de cílios", image_url:`imagens/foto${n}.jpg.jfif`}));
+// Descarta fotos padrão que não existirem na pasta imagens/ (evita imagem quebrada no carrossel).
+const fotosPadraoPronto = Promise.all(FOTOS_PADRAO.map(f => new Promise(ok => {
+    const im = new Image(); im.onload = () => ok(f); im.onerror = () => ok(null); im.src = f.image_url;
+}))).then(l => {
+    const validas = l.filter(Boolean);
+    if (validas.length !== FOTOS_PADRAO.length) { FOTOS_PADRAO = validas; FOTOS = embaralharFotos(FOTOS_PADRAO); renderCar(); }
+    const galeria = document.getElementById("galeria");
+    if (galeria) galeria.style.display = FOTOS.length ? "" : "none";
+});
+let FOTOS = embaralharFotos(FOTOS_PADRAO);
+let ci = 0, indiceVisual = 0, pausa = false, raf = 0, interacaoAte = 0, arrasto = null, rebaseTimer = 0;
+const car = $("galeria"), trackCar = $("carTrack");
+const tf = r => `transform:translate(${+r.ox || 0}%,${+r.oy || 0}%) scale(${+r.zoom || 1});filter:brightness(${+r.bright || 100}%) contrast(${+r.contrast || 100}%)`;
+const slidesDoCar = () => Array.from(trackCar.querySelectorAll(".slide"));
+const modCar = (v,n) => ((v % n) + n) % n;
+function centroSlide(index) {
+    const slide = slidesDoCar()[index];
+    return slide ? slide.offsetLeft + slide.offsetWidth / 2 - trackCar.clientWidth / 2 : 0;
+}
+function marcar(indice) {
+    const slides = slidesDoCar();
+    if (!slides.length) return;
+    indiceVisual = indice;
+    const proximo = modCar(indice, FOTOS.length);
+    slides.forEach((s, k) => s.classList.toggle("on", k === indice));
+    if (proximo !== ci || !$("carPhrase").textContent) {
+        ci = proximo;
+        const frase = $("carPhrase");
+        frase.textContent = FRASES[ci % FRASES.length];
+        frase.classList.remove("pop");
+        void frase.offsetWidth;
+        frase.classList.add("pop");
+    }
+}
+function renderCar() {
+    const varias = FOTOS.length > 1;
+    const copias = varias ? 5 : 1;
+    trackCar.innerHTML = Array.from({length:copias}, (_, volta) => FOTOS.map((r, i) => {
+        const procedimento = String(r.title || "").trim();
+        const nome = procedimento && procedimento !== "Resultado" ? procedimento : "Extensão de cílios";
+        const legenda = `<figcaption class="cap"><b>${esc(nome)}</b>${r.price != null && r.price !== "" ? `<em>${curto(r.price)}</em>` : ""}</figcaption>`;
+        const url = esc(r.image_url);
+        return `<figure class="slide${r.fit === "contain" ? " ct" : ""}" data-foto="${i}" style="--im:url('${url}')"><div class="im"><img src="${url}" alt="${esc(nome)}" ${volta !== 2 && varias ? 'loading="lazy"' : ""} draggable="false" style="${tf(r)}"></div>${legenda}</figure>`;
+    }).join("")).join("");
+    $("carPrev").hidden = !varias;
+    $("carNext").hidden = !varias;
+    ci = -1;
+    const inicio = varias ? FOTOS.length * 2 : 0;
+    // Começa na cópia central, deixando várias voltas livres para ambos os lados.
+    trackCar.classList.add("sem-snap");
+    trackCar.scrollLeft = centroSlide(inicio);
+    marcar(inicio);
+    requestAnimationFrame(() => trackCar.classList.remove("sem-snap"));
+}
+function ir(delta) {
+    const s = slidesDoCar();
+    if (!s.length || FOTOS.length <= 1) return;
+    interacaoAte = Date.now() + 8500;
+    const alvo = Math.max(0, Math.min(s.length - 1, indiceVisual + delta));
+    trackCar.scrollTo({left:centroSlide(alvo),behavior:reduzir ? "auto" : "smooth"});
+}
+function revisarCentro() {
+    const s = slidesDoCar();
+    if (!s.length) return;
+    const meio = trackCar.scrollLeft + trackCar.clientWidth/2;
+    let indice = 0, dist = Number.POSITIVE_INFINITY;
+    s.forEach((item,k) => {
+        const d = Math.abs(item.offsetLeft + item.offsetWidth/2 - meio);
+        if (d < dist) { dist = d; indice = k; }
+    });
+    if (indice !== indiceVisual) marcar(indice);
+}
+function reposicionarSemPulo() {
+    if (FOTOS.length < 2 || arrasto || trackCar.classList.contains("arrastando")) return;
+    const n = FOTOS.length;
+    if (indiceVisual >= n * 2 && indiceVisual < n * 3) return;
+    let centro = indiceVisual;
+    while (centro < n * 2) centro += n;
+    while (centro >= n * 3) centro -= n;
+    const antiga = centroSlide(indiceVisual), nova = centroSlide(centro);
+    // A cópia no centro mostra exatamente a mesma foto; a troca não é percebida.
+    trackCar.classList.add("sem-snap");
+    trackCar.scrollLeft += nova - antiga;
+    marcar(centro);
+    requestAnimationFrame(() => requestAnimationFrame(() => trackCar.classList.remove("sem-snap")));
+}
+trackCar.addEventListener("scroll", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(revisarCentro);
+    clearTimeout(rebaseTimer);
+    rebaseTimer = setTimeout(reposicionarSemPulo, 240);
+}, {passive:true});
+$("carPrev").addEventListener("click", () => ir(-1));
+$("carNext").addEventListener("click", () => ir(1));
+trackCar.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        e.preventDefault();
+        ir(e.key === "ArrowRight" ? 1 : -1);
+    }
+});
+// Arrastar com o mouse; no celular vale o deslizamento nativo e sensível do dedo.
+trackCar.addEventListener("pointerdown", e => {
+    interacaoAte = Date.now() + 9000;
+    pausa = true;
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    arrasto = {x:e.clientX,scroll:trackCar.scrollLeft};
+    trackCar.classList.add("arrastando");
+    trackCar.setPointerCapture(e.pointerId);
+});
+trackCar.addEventListener("pointermove", e => {
+    if (!arrasto) return;
+    trackCar.scrollLeft = arrasto.scroll - (e.clientX-arrasto.x)*1.35;
+});
+function terminarArrasto() {
+    if (!arrasto) return;
+    arrasto = null;
+    trackCar.classList.remove("arrastando");
+    clearTimeout(rebaseTimer);
+    rebaseTimer = setTimeout(reposicionarSemPulo, 300);
+}
+trackCar.addEventListener("pointerup", terminarArrasto);
+trackCar.addEventListener("pointercancel", terminarArrasto);
+trackCar.addEventListener("lostpointercapture", terminarArrasto);
+car.addEventListener("pointerenter",e => { if(e.pointerType==="mouse") pausa=true; });
+car.addEventListener("pointerleave",() => { pausa=false; });
+car.addEventListener("pointerup",e => {
+    if (e.pointerType!=="mouse") pausa=false;
+    else setTimeout(() => { if (!car.matches(":hover")) pausa=false; },450);
+});
+car.addEventListener("pointercancel",() => { pausa=false; });
+car.addEventListener("focusin",() => { pausa=true; });
+car.addEventListener("focusout",() => { if(!car.matches(":hover")) pausa=false; });
+setInterval(() => {
+    if (!pausa && Date.now()>interacaoAte && !document.hidden && !reduzir && FOTOS.length>1) ir(1);
+}, 4200);
+
+/* ===== Sincronização com o Supabase (painel admin) ===== */
+async function carregarConfig() {
+    const {data, error} = await banco.from("kl_settings").select("key,value");
+    if (error || !data) return;
+    const c = {}; data.forEach(r => { c[r.key] = r.value; });
+    const set = (id, v) => { if (v && $(id)) $(id).textContent = v; };
+    set("slogan", c.slogan); set("intro", c.intro); set("bookingIntro", c.booking_intro);
+    const w = (c.whatsapp || "").replace(/\D/g, "");
+    if (w.length >= 12) {
+        WHATSAPP_DONA = w;
+    }
+    const h = (c.times || c.horarios || "").split(",").map(x => x.trim()).filter(x => /^([01]\d|2[0-3]):[0-5]\d$/.test(x));
+    if (h.length) { HORARIOS = h; renderSlots(); if (dateInput.value) carregarHorarios(); }
+}
+async function carregarServicos() {
+    const {data, error} = await banco.from("kl_services").select("*").eq("active", true).order("sort");
+    if (error || !data || !data.length) return;
+    CAT = data.map(r => ({nome:r.name, categoria:r.category, preco:+r.price, antigo:r.old_price == null ? null : +r.old_price, desc:r.description || ""}));
+    cart = cart.map(c => CAT.find(s => s.nome === c.nome)).filter(Boolean);
+    renderServicos();
+}
+async function carregarFotos() {
+    const {data, error} = await banco.from("kl_photos").select("*").eq("active", true).order("sort");
+    if (error || !data || !data.length) return;
+    await fotosPadraoPronto;
+    FOTOS = embaralharFotos([...FOTOS_PADRAO, ...data.filter(r => r.image_url)]); renderCar();
+    const galeria = document.getElementById("galeria");
+    if (galeria) galeria.style.display = FOTOS.length ? "" : "none";
+}
+
+/* ===== Recomeçar somente depois de encaminhar ao WhatsApp ===== */
+// O navegador não informa se a mensagem foi enviada dentro do WhatsApp.
+// Por isso reiniciamos quando a cliente retorna ao site, após o encaminhamento.
+const CHAVE_REINICIO_WHATSAPP = "keyla_reiniciar_apos_whatsapp";
+function reiniciarReservaDepoisDoWhatsApp() {
+    let pendente = reservaConcluida;
+    try { pendente = pendente || sessionStorage.getItem(CHAVE_REINICIO_WHATSAPP) === "1"; } catch (_) {}
+    if (!pendente) return;
+    try { sessionStorage.removeItem(CHAVE_REINICIO_WHATSAPP); } catch (_) {}
+    reservaConcluida = false;
+    $("bookingForm").reset();
+    cart = [];
+    ocupados = [];
+    diaFechado = false;
+    $("time").value = "";
+    dateInput.min = amanhaLocal();
+    $("resumo").textContent = "";
+    $("sub").disabled = false;
+    $("sub").textContent = "Confirmar meu horário";
+    const link = $("waFallback");
+    link.hidden = true;
+    link.removeAttribute("href");
+    renderCart();
+    renderSlots();
+    mostrar(1);
+    falar("Bem-vinda de volta! 💛 Você já pode iniciar outro agendamento.");
+    assistenteDizer("Tudo pronto para começar de novo, linda! ✨");
+}
+window.addEventListener("pageshow", reiniciarReservaDepoisDoWhatsApp);
+window.addEventListener("focus", reiniciarReservaDepoisDoWhatsApp);
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) reiniciarReservaDepoisDoWhatsApp();
+});
+
+/* ===== Envio ===== */
+$("bookingForm").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    if (passo < 4) { $("nx").click(); return; }
+    for (let p = 1; p <= 4; p++) { const m = validar(p); if (m) { mostrar(p); falar(m, true); return; } }
+    if (!banco) { falar("Não conseguimos conectar agora. Chame a Keyla no WhatsApp para reservar.", true); return; }
+    const botao = $("sub"), n = nome1(), telefone = $("phone").value;
+    if (botao.disabled) return;
+    const dados = {
+        p_name: $("name").value.trim(),
+        p_phone: telefone.replace(/\D/g, ""),
+        p_services: cart.map(i => ({name: i.nome})),
+        p_day: dateInput.value,
+        p_hour: $("time").value
+    };
+    botao.disabled = true; botao.textContent = "Registrando solicitação...";
+    let enviado = false;
+    try {
+        const {error} = await banco.rpc("kl_book_cart", dados);
+        if (error) {
+            console.error("Erro do Supabase:", error);
+            const msg = String(error.message || "");
+            if (error.code === "23505" || /hor[aá]rio (j[aá] foi|acabou de ser) reservado|hor[aá]rio (bloqueado|indispon)/i.test(msg)) { $("time").value = ""; await carregarHorarios(); mostrar(3); falar("Esse horário não está mais disponível. Escolha outro, por favor.", true); }
+            else if (error.code === "P0001" && /inv[aá]lido|telefone|whatsapp|data|servi[cç]o/i.test(msg)) falar("Confira os dados: nome com pelo menos 2 letras, WhatsApp com DDD e 9 dígitos, e uma data futura.", true);
+            else falar("Não foi possível enviar agora. Tente novamente ou chame no WhatsApp.", true);
+        } else {
+            const lista = cart.map(i => "\u2022 " + i.nome + " \u2014 " + dinheiro(i.preco)).join("\n");
+            const mensagem = `\u2728 KEYLA LASH \u2728\n\nOl\u00e1, Keyla! \u{1F495}\nGostaria de confirmar o meu agendamento:\n\n\u2755 Resumo do agendamento:\n\n\u{1F4C5} Data: ${dados.p_day.split("-").reverse().join("/")}\n\u{1F557} Hora: ${dados.p_hour}\n\u{1F6E0}\uFE0F Servi\u00e7os:\n${lista}\n\u{1F464} Profissional: ${PROFISSIONAL}\n\u{1F4B0} Total: ${dinheiro(total())}\n\n\u{1F64B} Cliente: ${dados.p_name}\n\u{1F4F1} WhatsApp: ${telefone}\n\n\u{1F496} Obrigada!`;
+            const url = "https://wa.me/" + WHATSAPP_DONA + "?text=" + encodeURIComponent(mensagem);
+            // Reserva gravada uma única vez. Recomeça na volta do WhatsApp, não antes.
+            enviado = true;
+            reservaConcluida = true;
+            botao.hidden = true;
+            const link = $("waFallback"); link.href = url; link.hidden = false;
+            try { sessionStorage.setItem(CHAVE_REINICIO_WHATSAPP, "1"); } catch (_) {}
+            falar(`Solicitação registrada, ${n}! Abrindo o WhatsApp para combinar o sinal de R$ 30,00. 💛`);
+            assistenteDizer(`Você merece esse carinho, ${n}! 💖 Agora é só combinar os detalhes pelo WhatsApp.`);
+            try { window.location.assign(url); }
+            catch (erroAbertura) {
+                console.warn("WhatsApp não abriu automaticamente:", erroAbertura);
+                falar("Sua solicitação foi registrada. Toque em 'Continuar no WhatsApp' para enviar a mensagem.");
+            }
+        }
+    } catch (e) {
+        console.error("Erro ao enviar:", e);
+        falar("Não foi possível enviar agora. Tente novamente ou chame no WhatsApp.", true);
+    }
+    if (!enviado) { botao.disabled = false; botao.textContent = "Confirmar meu horário"; }
+});
+
+/* ===== Atendente interativa: mensagens reais por etapa (sem chatbot/IA) ===== */
+const assistente = $("atendente");
+const assistBalao = $("atendenteBalao");
+const FRASES_ASSISTENTE = {
+    1: [
+        "Você tem uma beleza só sua! ✨ Vamos começar?",
+        "Seu autocuidado importa. Você merece esse tempinho! 💛",
+        "O primeiro passo é escolher um momento pra você. 🌷"
+    ],
+    2: [
+        "Seu olhar já é lindo. Vamos realçar o que você tem de único! 💖",
+        "Escolha o que faz você se sentir bem. Você é especial! ✨",
+        "A beleza está nos detalhes — e você merece cada cuidado. 🌸"
+    ],
+    3: [
+        "Tirar um tempinho para si também é amor-próprio. 💛",
+        "Você merece um momento de paz e beleza só seu! ✨",
+        "Vamos reservar uma hora para você brilhar ainda mais? 🌷"
+    ],
+    4: [
+        "Falta pouquinho! Seu momento de se cuidar está chegando. 💖",
+        "Você merece se olhar no espelho e sorrir! ✨",
+        "Obrigada por escolher cuidar de você. Isso é muito especial! 💛"
+    ]
+};
+let reservaConcluida = false;
+let fraseAssistente = 0;
+let assistenteSilenciada = false;
+let ultimaMensagemAssistente = "";
+function assistenteDizer(mensagem) {
+    if (!mensagem || assistenteSilenciada || mensagem === ultimaMensagemAssistente) return;
+    ultimaMensagemAssistente = mensagem;
+    assistBalao.textContent = mensagem;
+    assistente.classList.remove("balao-fechado");
+    assistBalao.classList.remove("mudando");
+    void assistBalao.offsetWidth;
+    assistBalao.classList.add("mudando");
+}
+function frasesDaEtapa(p) {
+    const n = nome1(), frases = FRASES_ASSISTENTE[p] || FRASES_ASSISTENTE[1];
+    if (p === 1 && n) return [`${n}, que nome lindo! 🌷 Você merece um momento só seu.`, ...frases];
+    if (p === 4 && n) return [`${n}, falta bem pouquinho! Seu brilho é único. 💛`, ...frases];
+    return frases;
+}
+function mensagemEtapaAssistente(p) {
+    fraseAssistente = 0;
+    assistenteDizer(frasesDaEtapa(p)[0]);
+}
+function outraFraseAssistente() {
+    const frases = frasesDaEtapa(passo);
+    // Não repetir a frase que já está no balão.
+    fraseAssistente = (fraseAssistente + 1) % frases.length;
+    if (frases[fraseAssistente] === ultimaMensagemAssistente) fraseAssistente = (fraseAssistente + 1) % frases.length;
+    assistenteDizer(frases[fraseAssistente]);
+}
+$("fecharBalao").addEventListener("click", () => {
+    assistenteSilenciada = true;
+    assistente.classList.add("balao-fechado");
+});
+$("atendenteBotao").addEventListener("click", () => {
+    const r = $("agendamento").getBoundingClientRect();
+    const formularioVisivel = r.top < window.innerHeight * .76 && r.bottom > window.innerHeight * .22;
+    if (!formularioVisivel) {
+        assistenteSilenciada = false;
+        assistenteDizer("Vem comigo! 💛 Esse momento de cuidado é todinho seu.");
+        $("agendamento").scrollIntoView({behavior:reduzir ? "auto" : "smooth", block:"start"});
+    } else {
+        assistenteSilenciada = false;
+        assistente.classList.remove("balao-fechado");
+        outraFraseAssistente();
+    }
+});
+// No celular, o balão recolhe durante a digitação; a bonequinha continua visível.
+$("bookingForm").querySelectorAll("input").forEach(campo => {
+    campo.addEventListener("focus", () => {
+        if (window.matchMedia("(max-width:700px)").matches) assistente.classList.add("digitando");
+    });
+    campo.addEventListener("blur", () => {
+        setTimeout(() => {
+            if (!$("bookingForm").contains(document.activeElement)) assistente.classList.remove("digitando");
+        }, 200);
+    });
+});
+$("name").addEventListener("change", () => {
+    if (passo === 1 && $("name").value.trim().length >= 2) {
+        assistenteDizer(`${nome1()}, que nome lindo! 💖 Você merece esse cuidado.`);
+    }
+});
+// Mensagens de incentivo ocasionais durante a reserva, sem interromper quem está digitando.
+setInterval(() => {
+    if (!naReserva || assistenteSilenciada || document.hidden || reservaConcluida ||
+        ($("bookingForm").contains(document.activeElement) && document.activeElement.matches("input,textarea,select"))) return;
+    outraFraseAssistente();
+}, 16000);
+
+/* ===== Início ===== */
+renderServicos(); renderCar(); renderSlots(); mostrar(1);
+if (banco) Promise.allSettled([carregarConfig(), carregarServicos(), carregarFotos()]);
+</script>
+
+
+<!-- Animações visuais independentes do sistema de agendamentos e Supabase -->
+<script>
+(() => {
+    'use strict';
+    const reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    // Pontos de luz são somente decorativos e nunca bloqueiam cliques.
+    if (!reduzirMovimento.matches) {
+        const estrelas = document.createElement('div');
+        estrelas.className = 'lux-estrelas';
+        estrelas.setAttribute('aria-hidden', 'true');
+        const coordenadas = [[10,18,2],[19,39,3],[79,16,2],[88,38,3],[15,67,2],[85,73,2],[31,12,2],[68,53,3],[42,73,2],[59,29,2]];
+        coordenadas.forEach(([x,y,t], i) => {
+            const estrela = document.createElement('span');
+            estrela.className = 'lux-estrela';
+            estrela.style.setProperty('--x', x + '%');
+            estrela.style.setProperty('--y', y + '%');
+            estrela.style.setProperty('--s', t + 'px');
+            estrela.style.setProperty('--delay', (-i * 1.17) + 's');
+            estrela.style.setProperty('--dur', (5.4 + i % 4) + 's');
+            estrelas.appendChild(estrela);
+        });
+        hero.insertBefore(estrelas, hero.firstChild);
+    }
+
+    // Revelar só quando visível; conteúdo continua legível em navegadores antigos.
+    if (!reduzirMovimento.matches && 'IntersectionObserver' in window) {
+        const vistos = new WeakSet();
+        const observador = new IntersectionObserver(entradas => {
+            entradas.forEach(entrada => {
+                if (!entrada.isIntersecting) return;
+                entrada.target.classList.add('lux-visivel');
+                observador.unobserve(entrada.target);
+            });
+        }, {threshold:0.07,rootMargin:'0px 0px -12px 0px'});
+
+        function acompanhar() {
+            const seletores = [
+                '#galeria', '.hero > .button', '#servicos .section-title',
+                '#servicos .service', '#agendamento .section-title',
+                '#agendamento .trust li', '#bookingForm',
+                '#informacoes .section-title', '#informacoes .protocol-card',
+                'footer img'
+            ];
+            document.querySelectorAll(seletores.join(',')).forEach(el => {
+                if (vistos.has(el)) return;
+                vistos.add(el);
+                const grupo = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
+                if (el.matches('.service, .trust li')) {
+                    el.style.setProperty('--lux-atraso', Math.min(grupo * 70, 280) + 'ms');
+                }
+                el.classList.add('lux-revelar');
+                observador.observe(el);
+            });
+        }
+        acompanhar();
+        document.body.classList.add('lux-pronto');
+        // Serviços são refeitos ao trocar categorias ou carregar o painel.
+        const grade = document.getElementById('svcGrid');
+        if (grade && 'MutationObserver' in window) {
+            new MutationObserver(acompanhar).observe(grade, {childList:true});
+        }
+    }
+
+    // Indicador elegante do percurso da página: sem mexer na rolagem do cliente.
+    const indicador = document.createElement('div');
+    indicador.className = 'lux-progresso';
+    indicador.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(indicador);
+    let agendado = false;
+    const atualizarProgresso = () => {
+        agendado = false;
+        const distancia = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const progresso = Math.max(0, Math.min(1, window.scrollY / distancia));
+        indicador.style.transform = 'scaleX(' + progresso + ')';
+    };
+    const pedirProgresso = () => {
+        if (agendado) return;
+        agendado = true;
+        window.requestAnimationFrame(atualizarProgresso);
+    };
+    window.addEventListener('scroll', pedirProgresso, {passive:true});
+    window.addEventListener('resize', pedirProgresso, {passive:true});
+    pedirProgresso();
+})();
+</script>
+
+</body>
+</html>
